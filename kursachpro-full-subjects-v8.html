@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КурсачПро — Готовые работы и индивидуальная помощь студентам</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --accent: #10b981;
+            --border: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: #eff6ff;
+        }
+
+        /* Первый экран */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 75px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Секции */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 45px;
+            font-size: 16px;
+        }
+
+        /* Преимущества */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* КАТАЛОГ ГОТОВЫХ РАБОТ */
+        .catalog-section {
+            background: var(--bg-light);
+        }
+
+        .catalog-filters {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            background: var(--white);
+        }
+
+        .work-card {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .work-img-wrap {
+            position: relative;
+            height: 190px;
+            background: #e2e8f0;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .work-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-type-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .work-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .work-subject {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 6px;
+        }
+
+        .work-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .work-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .work-footer {
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .work-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .work-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .work-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .work-buttons .btn {
+            padding: 9px 10px;
+            font-size: 13px;
+        }
+
+        #no-results {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--white);
+            border-radius: 12px;
+            display: none;
+        }
+
+        /* Отзывы */
+        .review-card {
+            background: var(--bg-light);
+            padding: 26px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .review-author {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .review-stars {
+            color: #f59e0b;
+            font-size: 16px;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .review-tag {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ФОРМА ЗАКАЗА В СТИЛЕ STUDWORK */
+        .order-section {
+            background: #f1f5f9;
+        }
+
+        .studwork-form-box {
+            max-width: 820px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 36px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .studwork-form-header {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .sw-row {
+            margin-bottom: 20px;
+        }
+
+        .sw-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 16px;
+        }
+
+        .sw-grid-3 {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr 0.8fr;
+            gap: 12px;
+            align-items: end;
+        }
+
+        .sw-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .sw-input,
+        .sw-select,
+        .sw-textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: border-color 0.2s;
+        }
+
+        .sw-input:focus,
+        .sw-select:focus,
+        .sw-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .sw-textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .subject-combo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .sw-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .sw-bottom-panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 22px;
+            margin-bottom: 22px;
+        }
+
+        .sw-budget-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .sw-budget-input-wrap {
+            position: relative;
+            width: 180px;
+        }
+
+        .sw-budget-input-wrap span {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .sw-budget-input-wrap input {
+            padding-left: 30px;
+        }
+
+        .sw-plagiat-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .sw-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .sw-checkbox-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        #form-message {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #ecfdf5;
+            color: #065f46;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        /* Подвал */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 35px 0;
+            font-size: 14px;
+        }
+
+        /* Плавающие кнопки мессенджеров */
+        .floating-messengers {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .float-tg { background: #0088cc; }
+        .float-vk { background: #0077ff; }
+        .float-max { background: #7c3aed; }
+
+        /* Модальные окна */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 14px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-muted);
+            border: none;
+            background: none;
+        }
+
+        .modal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 8px;
+        }
+
+        /* Адаптив */
+        @media (max-width: 850px) {
+            .catalog-filters {
+                grid-template-columns: 1fr;
+            }
+            .sw-grid-2,
+            .sw-grid-3,
+            .subject-combo {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 28px; }
+            .studwork-form-box { padding: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav">
+            <a href="#" class="logo">КурсачПро</a>
+            <nav class="nav-links">
+                <a href="#catalog">Готовые работы</a>
+                <a href="#advantages">Преимущества</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#order">Индивидуальный заказ</a>
+            </nav>
+            <a href="#order" class="btn">Разместить заказ</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Готовые и индивидуальные учебные работы для студентов</h1>
+            <p>Выбирайте проверенные курсовые, РГР и контрольные из каталога с мгновенной выдачей или разместите индивидуальное задание с оценкой за 15 минут.</p>
+            <div class="hero-actions">
+                <a href="#catalog" class="btn">Найти готовую работу</a>
+                <a href="#order" class="btn btn-outline">Заказать с нуля</a>
+            </div>
+            <div class="hero-badges">
+                <span class="badge">✓ Оформление строго по ГОСТу</span>
+                <span class="badge">✓ Проверка Антиплагиат.ВУЗ</span>
+                <span class="badge">✓ Бесплатные правки до защиты</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТАЛОГ ГОТОВЫХ РАБОТ -->
+    <section id="catalog" class="catalog-section">
+        <div class="container">
+            <h2 class="section-title">Каталог готовых работ</h2>
+            <p class="section-subtitle">Ознакомьтесь с демо-фрагментом на Яндекс.Диске перед покупкой. После оплаты полная версия отправляется вам в мессенджер или на почту.</p>
+
+            <!-- Фильтры -->
+            <div class="catalog-filters">
+                <div class="filter-group">
+                    <label for="filterSubject">Дисциплина / Предмет</label>
+                    <select id="filterSubject" onchange="filterCatalog()">
+                        <option value="all">Все дисциплины</option>
+                        <option value="physics">Физика</option>
+                        <option value="math">Высшая математика</option>
+                        <option value="mech">Теоретическая механика / Сопромат</option>
+                        <option value="toe">Электротехника (ТОЭ)</option>
+                        <option value="economics">Экономика и менеджмент</option>
+                        <option value="it">Информатика и программирование</option>
+                        <option value="law">Право и юриспруденция</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterType">Тип работы</label>
+                    <select id="filterType" onchange="filterCatalog()">
+                        <option value="all">Все типы работ</option>
+                        <option value="coursework">Курсовая работа</option>
+                        <option value="rgr">РГР (Расчетно-графическая)</option>
+                        <option value="control">Контрольная работа</option>
+                        <option value="lab">Лабораторная работа</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterSearch">Поиск по теме, варианту или ВУЗу</label>
+                    <input type="text" id="filterSearch" placeholder="Например: ДВГУПС, вариант 12, термодинамика..." oninput="filterCatalog()">
+                </div>
+
+                <button type="button" class="btn btn-outline" onclick="resetFilters()">Сбросить</button>
+            </div>
+
+            <!-- Сетка карточек -->
+            <div class="grid-3" id="catalogGrid">
+                
+                <!-- Карточка 1 -->
+                <div class="work-card" data-subject="physics" data-type="rgr">
+                    <div>
+                        <div class="work-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <span class="work-type-badge">РГР</span>
+                            <img src="https://placehold.co/600x400/eff6ff/1d4ed8?text=Фото+работы+по+Физике" alt="РГР по физике">
+                        </div>
+                        <div class="work-body">
+                            <div>
+                                <div class="work-subject">Физика</div>
+                                <div class="work-title">РГР №2. Молекулярная физика и термодинамика (Вариант 14)</div>
+                                <div class="work-meta">ВУЗ: ДВГУПС • 18 страниц • Оценка: 5</div>
+                            </div>
+                            <div class="work-footer">
+                                <div class="work-price-row">
+                                    <span style="font-size: 13px; color: var(--text-muted);">Стоимость:</span>
+                                    <span class="work-price">850 ₽</span>
+                                </div>
+                                <div class="work-buttons">
+                                    <a href="https://disk.yandex.ru/" target="_blank" class="btn btn-outline">Демо-фрагмент</a>
+                                    <button type="button" class="btn" onclick="openBuyModal('РГР №2 по физике (Вариант 14)', '850 ₽')">Купить работу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="work-card" data-subject="math" data-type="control">
+                    <div>
+                        <div class="work-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <span class="work-type-badge">Контрольная</span>
+                            <img src="https://placehold.co/600x400/f0fdf4/15803d?text=Фото+работы+по+Математике" alt="Контрольная по математике">
+                        </div>
+                        <div class="work-body">
+                            <div>
+                                <div class="work-subject">Высшая математика</div>
+                                <div class="work-title">Дифференциальные уравнения и ряды (Вариант 7, 10 задач)</div>
+                                <div class="work-meta">ВУЗ: ИрГУПС • Подробное решение • Оформлено в Word</div>
+                            </div>
+                            <div class="work-footer">
+                                <div class="work-price-row">
+                                    <span style="font-size: 13px; color: var(--text-muted);">Стоимость:</span>
+                                    <span class="work-price">700 ₽</span>
+                                </div>
+                                <div class="work-buttons">
+                                    <a href="https://disk.yandex.ru/" target="_blank" class="btn btn-outline">Демо-фрагмент</a>
+                                    <button type="button" class="btn" onclick="openBuyModal('Контрольная по математике (Вариант 7)', '700 ₽')">Купить работу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="work-card" data-subject="economics" data-type="coursework">
+                    <div>
+                        <div class="work-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <span class="work-type-badge">Курсовая</span>
+                            <img src="https://placehold.co/600x400/fefce8/a16207?text=Фото+курсовой+по+Экономике" alt="Курсовая по экономике">
+                        </div>
+                        <div class="work-body">
+                            <div>
+                                <div class="work-subject">Экономика предприятия</div>
+                                <div class="work-title">Анализ финансовой устойчивости и платежеспособности предприятия</div>
+                                <div class="work-meta">34 страницы • Оригинальность 82% • Таблицы и графики</div>
+                            </div>
+                            <div class="work-footer">
+                                <div class="work-price-row">
+                                    <span style="font-size: 13px; color: var(--text-muted);">Стоимость:</span>
+                                    <span class="work-price">1 900 ₽</span>
+                                </div>
+                                <div class="work-buttons">
+                                    <a href="https://disk.yandex.ru/" target="_blank" class="btn btn-outline">Демо-фрагмент</a>
+                                    <button type="button" class="btn" onclick="openBuyModal('Курсовая: Анализ финансовой устойчивости', '1 900 ₽')">Купить работу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="work-card" data-subject="mech" data-type="rgr">
+                    <div>
+                        <div class="work-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <span class="work-type-badge">РГР</span>
+                            <img src="https://placehold.co/600x400/f3e8ff/6b21a8?text=Фото+работы+Сопромат" alt="РГР по сопромату">
+                        </div>
+                        <div class="work-body">
+                            <div>
+                                <div class="work-subject">Сопротивление материалов</div>
+                                <div class="work-title">Расчет статически неопределимой балки на изгиб и кручение (Вариант 21)</div>
+                                <div class="work-meta">Эпюры в AutoCAD + пояснительная записка • Оценка: 5</div>
+                            </div>
+                            <div class="work-footer">
+                                <div class="work-price-row">
+                                    <span style="font-size: 13px; color: var(--text-muted);">Стоимость:</span>
+                                    <span class="work-price">1 100 ₽</span>
+                                </div>
+                                <div class="work-buttons">
+                                    <a href="https://disk.yandex.ru/" target="_blank" class="btn btn-outline">Демо-фрагмент</a>
+                                    <button type="button" class="btn" onclick="openBuyModal('РГР Сопромат: Расчет балки (Вариант 21)', '1 100 ₽')">Купить работу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 5 -->
+                <div class="work-card" data-subject="toe" data-type="coursework">
+                    <div>
+                        <div class="work-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <span class="work-type-badge">Курсовая</span>
+                            <img src="https://placehold.co/600x400/fee2e2/b91c1c?text=Фото+работы+ТОЭ" alt="Курсовая по ТОЭ">
+                        </div>
+                        <div class="work-body">
+                            <div>
+                                <div class="work-subject">Электротехника (ТОЭ)</div>
+                                <div class="work-title">Расчет разветвленных цепей синусоидального тока (Вариант 9)</div>
+                                <div class="work-meta">Векторные диаграммы • 26 страниц • Проверено преподавателем</div>
+                            </div>
+                            <div class="work-footer">
+                                <div class="work-price-row">
+                                    <span style="font-size: 13px; color: var(--text-muted);">Стоимость:</span>
+                                    <span class="work-price">1 400 ₽</span>
+                                </div>
+                                <div class="work-buttons">
+                                    <a href="https://disk.yandex.ru/" target="_blank" class="btn btn-outline">Демо-фрагмент</a>
+                                    <button type="button" class="btn" onclick="openBuyModal('Курсовая ТОЭ: Расчет цепей (Вариант 9)', '1 400 ₽')">Купить работу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 6 -->
+                <div class="work-card" data-subject="it" data-type="lab">
+                    <div>
+                        <div class="work-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <span class="work-type-badge">Лабораторная</span>
+                            <img src="https://placehold.co/600x400/e0f2fe/0369a1?text=Фото+работы+Python+БД" alt="Лабораторная по программированию">
+                        </div>
+                        <div class="work-body">
+                            <div>
+                                <div class="work-subject">Программирование и БД</div>
+                                <div class="work-title">Разработка базы данных «Учет студентов» в PostgreSQL + интерфейс на Python</div>
+                                <div class="work-meta">Исходный код + отчет со скриншотами • Готово к сдаче</div>
+                            </div>
+                            <div class="work-footer">
+                                <div class="work-price-row">
+                                    <span style="font-size: 13px; color: var(--text-muted);">Стоимость:</span>
+                                    <span class="work-price">1 200 ₽</span>
+                                </div>
+                                <div class="work-buttons">
+                                    <a href="https://disk.yandex.ru/" target="_blank" class="btn btn-outline">Демо-фрагмент</a>
+                                    <button type="button" class="btn" onclick="openBuyModal('Лабораторная: БД Учет студентов (Python)', '1 200 ₽')">Купить работу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="no-results">
+                <h3>По вашему запросу готовых работ пока нет</h3>
+                <p style="color: var(--text-muted); margin: 10px 0 20px;">Мы можем выполнить это задание индивидуально по вашей методичке.</p>
+                <a href="#order" class="btn">Разместить индивидуальный заказ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section id="advantages">
+        <div class="container">
+            <h2 class="section-title">Почему студенты обращаются к нам</h2>
+            <p class="section-subtitle">Работаем напрямую без лишних комиссий бирж и посредников.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Опытные исполнители</h3>
+                    <p>Задания выполняют преподаватели вузов, аспиранты и практикующие инженеры по техническим и гуманитарным профилям.</p>
+                </div>
+                <div class="card">
+                    <h3>Строго по методичке</h3>
+                    <p>Соблюдаем требования вашего ВУЗа к оформлению формул, чертежей, списку литературы и оригинальности текста.</p>
+                </div>
+                <div class="card">
+                    <h3>Гарантия до защиты</h3>
+                    <p>Если научный руководитель вернет работу на доработку, внесем все правки бесплатно в кратчайшие сроки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section id="reviews" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Отзывы студентов</h2>
+            <p class="section-subtitle">Реальные истории сдачи курсовых, РГР и контрольных работ.</p>
+            <div class="grid-3">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Алексей, 3 курс</span>
+                        <span class="review-stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Брал готовую РГР по термодинамике для ДВГУПС. Перед оплатой посмотрел фрагмент на Яндекс.Диске — все совпало с моей методичкой. Сдал с первого раза на пятерку!</p>
+                    <div class="review-tag">Дисциплина: Физика</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Марина, 4 курс</span>
+                        <span class="review-stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Заказывала индивидуальную курсовую по экономике предприятия с практической частью. Оригинальность вышла 84% в Антиплагиат.ВУЗ, преподаватель даже не придрался.</p>
+                    <div class="review-tag">Дисциплина: Экономика</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Дмитрий, 2 курс</span>
+                        <span class="review-stars">★★★★★</span>
+                    </div>
+                    <p class="review-text">Срочно нужно было решить 10 задач по дифурам и рядам за 2 дня до зачета. Сделали за вечер, расписали каждый шаг так понятно, что я легко защитил решение у доски.</p>
+                    <div class="review-tag">Дисциплина: Высшая математика</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОРМА РАЗМЕЩЕНИЯ ЗАКАЗА (В СТИЛЕ STUDWORK) -->
+    <section id="order" class="order-section">
+        <div class="container">
+            <div class="studwork-form-box">
+                <div class="studwork-form-header">Разместить заказ</div>
+                <form id="studworkOrderForm">
+                    
+                    <!-- Название работы -->
+                    <div class="sw-row">
+                        <label class="sw-label" for="workTitle">Название работы или тема *</label>
+                        <input type="text" id="workTitle" class="sw-input" placeholder="Введите название работы (например: Расчет электрических цепей, вариант 5)" required>
+                    </div>
+
+                    <!-- Тип работы и Выбор предмета (список + свое поле с автопоиском) -->
+                    <div class="sw-row sw-grid-2">
+                        <div>
+                            <label class="sw-label" for="workType">Тип работы *</label>
+                            <select id="workType" class="sw-select" required>
+                                <option value="">Выберите тип работы</option>
+                                <option value="Курсовая работа">Курсовая работа</option>
+                                <option value="Дипломная работа (ВКР)">Дипломная работа (ВКР)</option>
+                                <option value="Контрольная работа">Контрольная работа</option>
+                                <option value="Расчетно-графическая работа (РГР)">Расчетно-графическая работа (РГР)</option>
+                                <option value="Лабораторная работа">Лабораторная работа</option>
+                                <option value="Реферат / Эссе / Доклад">Реферат / Эссе / Доклад</option>
+                                <option value="Отчет по практике">Отчет по практике</option>
+                                <option value="Чертеж (AutoCAD / КОМПАС)">Чертеж (AutoCAD / КОМПАС)</option>
+                                <option value="Решение задач">Решение задач</option>
+                                <option value="Помощь онлайн на экзамене / тесте">Помощь онлайн на экзамене / тесте</option>
+                                <option value="Другой тип работы">Другой тип работы</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="sw-label" for="subjectInput">Предмет / Дисциплина *</label>
+                            <div class="subject-combo">
+                                <select id="subjectSelect" class="sw-select" onchange="syncSubjectFromSelect()">
+                                    <option value="">-- Выбрать из справочника (120+ предметов) --</option>
+                                    
+                                    <optgroup label="Математика и ИТ">
+                                        <option value="Высшая математика">Высшая математика</option>
+                                        <option value="Математический анализ">Математический анализ</option>
+                                        <option value="Линейная алгебра и аналитическая геометрия">Линейная алгебра и аналитическая геометрия</option>
+                                        <option value="Дифференциальные уравнения">Дифференциальные уравнения</option>
+                                        <option value="Теория вероятностей и мат. статистика">Теория вероятностей и мат. статистика</option>
+                                        <option value="Дискретная математика">Дискретная математика</option>
+                                        <option value="Численные методы">Численные методы</option>
+                                        <option value="Методы оптимизации">Методы оптимизации</option>
+                                        <option value="Информатика">Информатика</option>
+                                        <option value="Программирование (Python)">Программирование (Python)</option>
+                                        <option value="Программирование (C / C++ / C#)">Программирование (C / C++ / C#)</option>
+                                        <option value="Программирование (Java / JavaScript)">Программирование (Java / JavaScript)</option>
+                                        <option value="Базы данных и SQL">Базы данных и SQL</option>
+                                        <option value="Алгоритмы и структуры данных">Алгоритмы и структуры данных</option>
+                                        <option value="Информационная безопасность">Информационная безопасность</option>
+                                        <option value="Компьютерные сети">Компьютерные сети</option>
+                                        <option value="Веб-разработка">Веб-разработка</option>
+                                    </optgroup>
+
+                                    <optgroup label="Естественные науки">
+                                        <option value="Физика">Физика</option>
+                                        <option value="Общая и неорганическая химия">Общая и неорганическая химия</option>
+                                        <option value="Органическая химия">Органическая химия</option>
+                                        <option value="Аналитическая химия">Аналитическая химия</option>
+                                        <option value="Физическая и коллоидная химия">Физическая и коллоидная химия</option>
+                                        <option value="Биология">Биология</option>
+                                        <option value="Экология">Экология</option>
+                                        <option value="Безопасность жизнедеятельности (БЖД)">Безопасность жизнедеятельности (БЖД)</option>
+                                        <option value="География и геология">География и геология</option>
+                                        <option value="Астрономия">Астрономия</option>
+                                    </optgroup>
+
+                                    <optgroup label="Инженерные и технические дисциплины">
+                                        <option value="Теоретическая механика (Термех)">Теоретическая механика (Термех)</option>
+                                        <option value="Сопротивление материалов (Сопромат)">Сопротивление материалов (Сопромат)</option>
+                                        <option value="Электротехника и электроника (ТОЭ)">Электротехника и электроника (ТОЭ)</option>
+                                        <option value="Начертательная геометрия">Начертательная геометрия</option>
+                                        <option value="Инженерная и компьютерная графика">Инженерная и компьютерная графика</option>
+                                        <option value="Детали машин и основы конструирования">Детали машин и основы конструирования</option>
+                                        <option value="Теория механизмов и машин (ТММ)">Теория механизмов и машин (ТММ)</option>
+                                        <option value="Материаловедение и технология металлов">Материаловедение и технология металлов</option>
+                                        <option value="Гидравлика и гидрогазодинамика">Гидравлика и гидрогазодинамика</option>
+                                        <option value="Термодинамика и теплопередача">Термодинамика и теплопередача</option>
+                                        <option value="Метрология, стандартизация и сертификация">Метрология, стандартизация и сертификация</option>
+                                        <option value="Строительная механика">Строительная механика</option>
+                                        <option value="Архитектура и строительство">Архитектура и строительство</option>
+                                        <option value="Железнодорожный транспорт и пути сообщения">Железнодорожный транспорт и пути сообщения</option>
+                                        <option value="Автомобили и автомобильное хозяйство">Автомобили и автомобильное хозяйство</option>
+                                        <option value="Нефтегазовое дело">Нефтегазовое дело</option>
+                                        <option value="Электроэнергетика и электроснабжение">Электроэнергетика и электроснабжение</option>
+                                        <option value="Автоматизация технологических процессов">Автоматизация технологических процессов</option>
+                                    </optgroup>
+
+                                    <optgroup label="Экономика, финансы и менеджмент">
+                                        <option value="Экономика предприятия (организации)">Экономика предприятия (организации)</option>
+                                        <option value="Экономическая теория">Экономическая теория</option>
+                                        <option value="Макроэкономика">Макроэкономика</option>
+                                        <option value="Микроэкономика">Микроэкономика</option>
+                                        <option value="Бухгалтерский учет и аудит">Бухгалтерский учет и аудит</option>
+                                        <option value="Финансы и кредит">Финансы и кредит</option>
+                                        <option value="Финансовый менеджмент">Финансовый менеджмент</option>
+                                        <option value="Анализ финансово-хозяйственной деятельности (АФХД)">Анализ финансово-хозяйственной деятельности (АФХД)</option>
+                                        <option value="Налоги и налогообложение">Налоги и налогообложение</option>
+                                        <option value="Банковское дело">Банковское дело</option>
+                                        <option value="Менеджмент">Менеджмент</option>
+                                        <option value="Стратегический менеджмент">Стратегический менеджмент</option>
+                                        <option value="Управление персоналом (HR)">Управление персоналом (HR)</option>
+                                        <option value="Маркетинг">Маркетинг</option>
+                                        <option value="Логистика и управление цепями поставок">Логистика и управление цепями поставок</option>
+                                        <option value="Статистика и эконометрика">Статистика и эконометрика</option>
+                                        <option value="Бизнес-планирование и инвестиции">Бизнес-планирование и инвестиции</option>
+                                        <option value="Государственное и муниципальное управление (ГМУ)">Государственное и муниципальное управление (ГМУ)</option>
+                                        <option value="Товароведение и экспертиза">Товароведение и экспертиза</option>
+                                    </optgroup>
+
+                                    <optgroup label="Право и юриспруденция">
+                                        <option value="Теория государства и права (ТГП)">Теория государства и права (ТГП)</option>
+                                        <option value="Конституционное право">Конституционное право</option>
+                                        <option value="Гражданское право">Гражданское право</option>
+                                        <option value="Уголовное право">Уголовное право</option>
+                                        <option value="Трудовое право">Трудовое право</option>
+                                        <option value="Административное право">Административное право</option>
+                                        <option value="Семейное право">Семейное право</option>
+                                        <option value="Земельное и экологическое право">Земельное и экологическое право</option>
+                                        <option value="Финансовое и налоговое право">Финансовое и налоговое право</option>
+                                        <option value="Гражданский и арбитражный процесс">Гражданский и арбитражный процесс</option>
+                                        <option value="Уголовный процесс и криминалистика">Уголовный процесс и криминалистика</option>
+                                        <option value="Международное право">Международное право</option>
+                                        <option value="Правоведение">Правоведение</option>
+                                    </optgroup>
+
+                                    <optgroup label="Гуманитарные и социальные науки">
+                                        <option value="История России и всеобщая история">История России и всеобщая история</option>
+                                        <option value="Философия">Философия</option>
+                                        <option value="Психология">Психология</option>
+                                        <option value="Педагогика">Педагогика</option>
+                                        <option value="Социология">Социология</option>
+                                        <option value="Политология">Политология</option>
+                                        <option value="Культурология">Культурология</option>
+                                        <option value="Русский язык и культура речи">Русский язык и культура речи</option>
+                                        <option value="Литература">Литература</option>
+                                        <option value="Английский язык">Английский язык</option>
+                                        <option value="Немецкий / Французский язык">Немецкий / Французский язык</option>
+                                        <option value="Журналистика, реклама и PR">Журналистика, реклама и PR</option>
+                                        <option value="Туризм и гостиничное дело">Туризм и гостиничное дело</option>
+                                        <option value="Логика">Логика</option>
+                                        <option value="Этика и эстетика">Этика и эстетика</option>
+                                    </optgroup>
+
+                                    <optgroup label="Медицина и фармация">
+                                        <option value="Анатомия и физиология">Анатомия и физиология</option>
+                                        <option value="Фармакология">Фармакология</option>
+                                        <option value="Сестринское дело">Сестринское дело</option>
+                                        <option value="Терапия и хирургия">Терапия и хирургия</option>
+                                        <option value="Педиатрия">Педиатрия</option>
+                                        <option value="Гигиена и эпидемиология">Гигиена и эпидемиология</option>
+                                    </optgroup>
+                                </select>
+
+                                <!-- Поле с живым автопоиском по всем 120+ предметам или ручным вводом -->
+                                <input type="text" id="subjectInput" list="subjectsDatalist" class="sw-input" placeholder="Или начните вводить предмет..." required>
+                                <datalist id="subjectsDatalist"></datalist>
+                            </div>
+                            <div class="sw-hint">Выберите из списка слева или начните печатать название справа — сработает быстрый поиск.</div>
+                        </div>
+                    </div>
+
+                    <!-- Дата и время сдачи -->
+                    <div class="sw-row sw-grid-3">
+                        <div>
+                            <label class="sw-label" for="dueDate">Дата сдачи *</label>
+                            <input type="date" id="dueDate" class="sw-input" required>
+                        </div>
+                        <div>
+                            <label class="sw-label" for="dueHour">Время (ЧЧ)</label>
+                            <select id="dueHour" class="sw-select">
+                                <option value="10">10</option>
+                                <option value="12">12</option>
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18" selected>18</option>
+                                <option value="20">20</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="sw-label" for="dueMinute">Минуты (ММ)</label>
+                            <select id="dueMinute" class="sw-select">
+                                <option value="00" selected>00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Описание работы -->
+                    <div class="sw-row">
+                        <label class="sw-label" for="workDescription">Описание работы и требования по методичке</label>
+                        <textarea id="workDescription" class="sw-textarea" placeholder="Укажите ВУЗ, вариант задания, количество страниц, требования к оформлению и другие важные детали..."></textarea>
+                    </div>
+
+                    <!-- Прикрепить файлы через Яндекс.Диск -->
+                    <div class="sw-row">
+                        <label class="sw-label" for="yandexDiskLink">📎 Прикрепить файлы (ссылка на Яндекс.Диск / Облако)</label>
+                        <input type="url" id="yandexDiskLink" class="sw-input" placeholder="https://disk.yandex.ru/d/...">
+                        <div class="sw-hint">Загрузите методичку, исходные данные или фото задания на Яндекс.Диск и вставьте публичную ссылку сюда.</div>
+                    </div>
+
+                    <!-- Контакты студента -->
+                    <div class="sw-row">
+                        <label class="sw-label" for="clientContact">Ваш Telegram, MAX или номер телефона для связи *</label>
+                        <input type="text" id="clientContact" class="sw-input" placeholder="@username или +7 (999) 000-00-00" required>
+                    </div>
+
+                    <!-- Нижняя панель: Стоимость и Проверка на плагиат (как на Studwork) -->
+                    <div class="sw-bottom-panel">
+                        <div class="sw-budget-row">
+                            <div class="sw-budget-input-wrap">
+                                <span>₽</span>
+                                <input type="number" id="workBudget" class="sw-input" placeholder="Стоимость" min="0" step="100">
+                            </div>
+                            <span style="font-size: 14px; color: var(--text-muted);">Ориентировочная сумма, на которую вы рассчитываете (необязательно)</span>
+                        </div>
+
+                        <div class="sw-plagiat-row">
+                            <label class="sw-checkbox-label">
+                                <input type="checkbox" id="plagiatCheck" onchange="togglePlagiatPercent()">
+                                Проверка на плагиат
+                            </label>
+                            <select id="plagiatPercent" class="sw-select" style="width: 110px;" disabled>
+                                <option value="50%">50%</option>
+                                <option value="60%">60%</option>
+                                <option value="70%" selected>70%</option>
+                                <option value="75%">75%</option>
+                                <option value="80%">80%</option>
+                                <option value="85%">85%</option>
+                                <option value="90%">90%</option>
+                            </select>
+                            <span style="font-size: 14px; color: var(--text-muted);">минимальная уникальность текста</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 16px;">Разместить заказ и узнать точную цену</button>
+                    <div id="form-message">✓ Заказ успешно отправлен! Мы изучим задание и напишем вам в течение 15 минут.</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 КурсачПро — помощь студентам с учебными работами.</p>
+            <p style="margin-top: 6px; font-size: 12px; opacity: 0.7;">Все материалы предоставляются в качестве образцов для подготовки и ознакомления.</p>
+        </div>
+    </footer>
+
+    <!-- ПЛАВАЮЩИЕ КНОПКИ МЕССЕНДЖЕРОВ -->
+    <div class="floating-messengers">
+        <a id="floatTgLink" href="https://t.me/ваш_логин" target="_blank" class="float-btn float-tg">Telegram</a>
+        <a id="floatVkLink" href="https://vk.com/ваш_логин" target="_blank" class="float-btn float-vk">ВКонтакте</a>
+        <a id="floatMaxLink" href="https://max.ru/ваш_логин" target="_blank" class="float-btn float-max">MAX</a>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПОКУПКИ ГОТОВОЙ РАБОТЫ -->
+    <div id="buyModal" class="modal-overlay" onclick="closeBuyModal(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeBuyModal()">×</button>
+            <h3 style="margin-bottom: 10px;">Покупка готовой работы</h3>
+            <p id="modalWorkInfo" style="font-weight: 600; color: var(--primary); margin-bottom: 10px;"></p>
+            <p style="font-size: 14px; color: var(--text-muted);">Выберите удобный мессенджер — мы вышлем реквизиты и сразу после оплаты отправим полный архив работы.</p>
+            <div class="modal-links">
+                <a id="modalTgBtn" href="#" target="_blank" class="btn" style="background: #0088cc;">Написать в Telegram</a>
+                <a id="modalVkBtn" href="#" target="_blank" class="btn" style="background: #0077ff;">Написать во ВКонтакте</a>
+                <a id="modalMaxBtn" href="#" target="_blank" class="btn" style="background: #7c3aed;">Написать в MAX</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЛАЙТБОКС ДЛЯ ПРОСМОТРА ФОТО -->
+    <div id="lightbox" class="modal-overlay" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="Увеличенное фото работы">
+    </div>
+
+    <script>
+        // ==========================================
+        // НАСТРОЙКИ ВАШИХ КОНТАКТОВ И TELEGRAM-БОТА
+        // ==========================================
+        const MY_TELEGRAM_USERNAME = "ваш_логин"; // Без символа @
+        const MY_VK_URL = "https://vk.com/ваш_логин";
+        const MY_MAX_URL = "https://max.ru/ваш_логин";
+
+        const BOT_TOKEN = "ВСТАВЬТЕ_СЮДА_ТОКЕН_БОТА";
+        const CHAT_ID = "ВСТАВЬТЕ_СЮДА_ВАШ_CHAT_ID";
+        // ==========================================
+
+        // Инициализация ссылок плавающих кнопок и справочника datalist
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("floatTgLink").href = "https://t.me/" + MY_TELEGRAM_USERNAME;
+            document.getElementById("floatVkLink").href = MY_VK_URL;
+            document.getElementById("floatMaxLink").href = MY_MAX_URL;
+
+            // Автоматически копируем все 120+ предметов из select в datalist для живого поиска по буквам
+            const selectOptions = document.querySelectorAll("#subjectSelect option");
+            const datalist = document.getElementById("subjectsDatalist");
+            selectOptions.forEach(opt => {
+                if (opt.value) {
+                    const optionEl = document.createElement("option");
+                    optionEl.value = opt.value;
+                    datalist.appendChild(optionEl);
+                }
+            });
+
+            // Устанавливаем дату по умолчанию (+3 дня от сегодня)
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + 3);
+            document.getElementById("dueDate").valueAsDate = defaultDate;
+        });
+
+        // Синхронизация выпадающего списка предметов с текстовым полем
+        function syncSubjectFromSelect() {
+            const selectVal = document.getElementById("subjectSelect").value;
+            if (selectVal) {
+                document.getElementById("subjectInput").value = selectVal;
+            }
+        }
+
+        // Включение/выключение выбора процента антиплагиата
+        function togglePlagiatPercent() {
+            const isChecked = document.getElementById("plagiatCheck").checked;
+            document.getElementById("plagiatPercent").disabled = !isChecked;
+        }
+
+        // Фильтрация каталога готовых работ
+        function filterCatalog() {
+            const subject = document.getElementById("filterSubject").value;
+            const type = document.getElementById("filterType").value;
+            const search = document.getElementById("filterSearch").value.toLowerCase().trim();
+            const cards = document.querySelectorAll(".work-card");
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardSubject = card.getAttribute("data-subject");
+                const cardType = card.getAttribute("data-type");
+                const cardText = card.innerText.toLowerCase();
+
+                const matchSubject = (subject === "all" || cardSubject === subject);
+                const matchType = (type === "all" || cardType === type);
+                const matchSearch = (!search || cardText.includes(search));
+
+                if (matchSubject && matchType && matchSearch) {
+                    card.style.display = "flex";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            document.getElementById("no-results").style.display = (visibleCount === 0) ? "block" : "none";
+        }
+
+        function resetFilters() {
+            document.getElementById("filterSubject").value = "all";
+            document.getElementById("filterType").value = "all";
+            document.getElementById("filterSearch").value = "";
+            filterCatalog();
+        }
+
+        // Модальное окно покупки готовой работы
+        function openBuyModal(workName, workPrice) {
+            document.getElementById("modalWorkInfo").innerText = workName + " — " + workPrice;
+            const msgText = encodeURIComponent("Здравствуйте! Хочу купить готовую работу: «" + workName + "» (" + workPrice + ").");
+            document.getElementById("modalTgBtn").href = "https://t.me/" + MY_TELEGRAM_USERNAME + "?text=" + msgText;
+            document.getElementById("modalVkBtn").href = MY_VK_URL;
+            document.getElementById("modalMaxBtn").href = MY_MAX_URL;
+            document.getElementById("buyModal").style.display = "flex";
+        }
+
+        function closeBuyModal() {
+            document.getElementById("buyModal").style.display = "none";
+        }
+
+        // Лайтбокс для фото
+        function openLightbox(src) {
+            document.getElementById("lightbox-img").src = src;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+
+        // Отправка формы индивидуального заказа в Telegram
+        document.getElementById("studworkOrderForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById("workTitle").value;
+            const type = document.getElementById("workType").value;
+            const subject = document.getElementById("subjectInput").value;
+            const dueDate = document.getElementById("dueDate").value;
+            const dueTime = document.getElementById("dueHour").value + ":" + document.getElementById("dueMinute").value;
+            const desc = document.getElementById("workDescription").value || "Не указано";
+            const disk = document.getElementById("yandexDiskLink").value || "Файлы не прикреплены";
+            const contact = document.getElementById("clientContact").value;
+            const budget = document.getElementById("workBudget").value ? document.getElementById("workBudget").value + " ₽" : "Не указан";
+            const plagiat = document.getElementById("plagiatCheck").checked
+                ? "Да (от " + document.getElementById("plagiatPercent").value + ")"
+                : "Не требуется";
+
+            const message =
+                "🎓 *НОВЫЙ ЗАКАЗ С САЙТА*
+
+" +
+                "📌 *Тема:* " + title + "
+" +
+                "📂 *Тип работы:* " + type + "
+" +
+                "📚 *Предмет:* " + subject + "
+" +
+                "⏰ *Срок сдачи:* " + dueDate + " до " + dueTime + "
+" +
+                "💰 *Бюджет клиента:* " + budget + "
+" +
+                "🔍 *Антиплагиат:* " + plagiat + "
+" +
+                "📎 *Яндекс.Диск:* " + disk + "
+" +
+                "📝 *Описание:* " + desc + "
+
+" +
+                "📞 *Контакт клиента:* " + contact;
+
+            if (BOT_TOKEN !== "ВСТАВЬТЕ_СЮДА_ТОКЕН_БОТА" && CHAT_ID !== "ВСТАВЬТЕ_СЮДА_ВАШ_CHAT_ID") {
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: "Markdown"
+                    })
+                }).catch(err => console.error("Ошибка отправки в Telegram:", err));
+            }
+
+            document.getElementById("form-message").style.display = "block";
+            this.reset();
+            document.getElementById("plagiatPercent").disabled = true;
+        });
+    </script>
+</body>
+</html>
